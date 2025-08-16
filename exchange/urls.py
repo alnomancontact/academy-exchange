@@ -17,7 +17,7 @@ Including another URLconf
 # In your urls.py (e.g., exchange/urls.py)
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from accounts.views import login_view, register_view , profile_view , history_view # <-- Corrected: import register_view as well
 
 urlpatterns = [
