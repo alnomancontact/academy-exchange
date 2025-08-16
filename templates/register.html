@@ -1,0 +1,118 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'register_style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register | Academy Exchange</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="{% static 'css/register_style.css' %}">
+</head>
+<body class="academy-register-body">
+
+    <div class="academy-register-container">
+        <div class="academy-register-card">
+            
+            <div class="academy-register-header">
+                <h2 class="academy-register-title">
+                    Unlock Your Academic Potential <span class="academy-register-icon">✨</span>
+                </h2>
+                <p class="academy-register-subtitle">
+                    Join Academy Exchange to effortlessly <strong class="text-[#003366]">post, browse, and connect</strong> for your books and notes.
+                </p>
+            </div>
+
+            <form method="post" class="academy-register-form">
+                {% csrf_token %}
+                
+                <!-- Username Field -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        name="username" 
+                        id="username" 
+                        required 
+                        placeholder="Choose a unique username"
+                    />
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        id="email" 
+                        required 
+                        placeholder="Enter your email"
+                    />
+                </div>
+
+                <!-- Phone Number Field -->
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        name="phone_number" 
+                        id="phone_number" 
+                        placeholder="e.g., +88017XXXXXXXX"
+                    />
+                </div>
+
+                <!-- University ID Field -->
+                <div class="form-group">
+                    <label for="university_id">University ID</label>
+                    <input 
+                        type="text" 
+                        name="university_id" 
+                        id="university_id" 
+                        placeholder="e.g., 181xxxxxxx"
+                    />
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password" 
+                        required 
+                        placeholder="Create a strong password"
+                    />
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        name="confirm_password" 
+                        id="confirm_password" 
+                        required 
+                        placeholder="Re-enter your password"
+                    />
+                </div>
+
+                <button type="submit" class="academy-submit-btn">
+                    Register & Start Exchanging
+                </button>
+            </form>
+
+            <div class="academy-register-footer">
+                <p>Already have an account? 
+                    <a href="/login">Log in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

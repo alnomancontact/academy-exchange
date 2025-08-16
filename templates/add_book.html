@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Book - Academy Exchange</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #ecf0f1; }
+    .form-container {
+      width: 400px; margin: 40px auto; padding: 20px;
+      background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; }
+    input, select, textarea {
+      width: 100%; padding: 10px; margin: 10px 0;
+      border: 1px solid #ccc; border-radius: 4px;
+    }
+    .btn { background: #27ae60; color: white; padding: 10px; border: none; width: 100%; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add a New Book</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="title" placeholder="Book Title" required>
+      <input type="text" name="author" placeholder="Author" required>
+      <input type="text" name="condition" placeholder="Condition (New/Used)" required>
+      <input type="number" name="price" placeholder="Price" required>
+      <textarea name="description" placeholder="Short description"></textarea>
+      <button type="submit" class="btn">Add Book</button>
+    </form>
+  </div>
+</body>
+</html>

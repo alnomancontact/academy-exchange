@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marketplace - Academy Exchange</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+    header { background: #2c3e50; color: white; padding: 15px; text-align: center; }
+    .container { width: 80%; margin: 20px auto; }
+    .book-card {
+      background: white; padding: 15px; margin: 10px 0;
+      border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .book-card h3 { margin: 0; }
+    .btn {
+      padding: 6px 12px; border: none; border-radius: 4px;
+      cursor: pointer; text-decoration: none; color: white;
+    }
+    .btn-detail { background: #3498db; }
+    .btn-add { background: #27ae60; float: right; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Academy Exchange - Marketplace</h1>
+  </header>
+
+  <div class="container">
+    <a href="/books/add/" class="btn btn-add">+ Add Book</a>
+    <h2>Available Books</h2>
+
+    <!-- Example book card -->
+    <div class="book-card">
+      <div>
+        <h3>Data Structures in Python</h3>
+        <p>Author: John Doe | Condition: Good | Price: $10</p>
+      </div>
+      <a href="/books/1/" class="btn btn-detail">View</a>
+    </div>
+
+    <div class="book-card">
+      <div>
+        <h3>Discrete Mathematics</h3>
+        <p>Author: Jane Smith | Condition: Like New | Price: $15</p>
+      </div>
+      <a href="/books/2/" class="btn btn-detail">View</a>
+    </div>
+
+  </div>
+</body>
+</html>

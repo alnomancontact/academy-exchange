@@ -1,0 +1,103 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'history.css' %}">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exchange History | Educational Materials</title>
+  <link rel="stylesheet" href="{% static 'css/exchange_history.css' %}" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">AcademyExchange</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Exchange History</h1>
+      <p class="subtitle">Track all past exchanges of books and educational materials.</p>
+    </header>
+
+    <table class="exchange-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Item</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Exchanged By</th>
+          <th>Amount (BDT)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025-07-10</td>
+          <td>EEE Resistor Pack</td>
+          <td>Pack of 100 resistors, 1kΩ ±5%</td>
+          <td>EEE Components</td>
+          <td>Md. Rahim</td>
+          <td>580</td>
+          <td class="status completed">Completed</td>
+        </tr>
+        <tr>
+          <td>2025-07-08</td>
+          <td>Introduction to Algorithms</td>
+          <td>Third edition textbook, Cormen et al.</td>
+          <td>CSE Books</td>
+          <td>Fatima Akter</td>
+          <td>735</td>
+          <td class="status completed">Completed</td>
+        </tr>
+        <tr>
+          <td>2025-07-05</td>
+          <td>Digital Signal Processing</td>
+          <td>Reference book by Oppenheim and Schafer</td>
+          <td>Reference Books</td>
+          <td>Arif Hossain</td>
+          <td>850</td>
+          <td class="status pending">Pending</td>
+        </tr>
+        <tr>
+          <td>2025-06-30</td>
+          <td>Capacitor Kit Set</td>
+          <td>Assorted capacitors 1uF - 1000uF</td>
+          <td>EEE Components</td>
+          <td>Jannat Ara</td>
+          <td>670</td>
+          <td class="status completed">Completed</td>
+        </tr>
+        <tr>
+          <td>2025-06-25</td>
+          <td>Data Structures in Python</td>
+          <td>Textbook by Goodrich and Tamassia</td>
+          <td>CSE Books</td>
+          <td>Rahul Das</td>
+          <td>900</td>
+          <td class="status completed">Completed</td>
+        </tr>
+        <tr>
+          <td>2025-06-22</td>
+          <td>Advanced Computer Architecture</td>
+          <td>By Hennessy and Patterson</td>
+          <td>Reference Books</td>
+          <td>Salma Begum</td>
+          <td>450</td>
+          <td class="status completed">Completed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

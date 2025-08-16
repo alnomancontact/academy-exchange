@@ -1,0 +1,32 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'profile.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile | Academy Exchange</title>
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-card">
+      <div class="profile-banner"></div>
+      <div class="profile-image">
+        <img src="https://i.imgur.com/0y0y0y0.png" alt="User Photo" />
+      </div>
+      <div class="profile-info">
+        <h2>Rakib Hasan</h2>
+        <p class="student-id">ID: 19101234</p>
+        <div class="details">
+          <p><strong>Email:</strong> rakib.cse@nsu.edu.bd</p>
+          <p><strong>Department:</strong> CSE</p>
+          <p><strong>Role:</strong> Student</p>
+        </div>
+        <button class="edit-btn">Edit Profile</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
