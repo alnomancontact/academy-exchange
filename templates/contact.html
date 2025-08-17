@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Academy Exchange</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full bg-black/60 text-white z-50 transition-all" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="text-xl font-bold">Academy Exchange</div>
+      <div class="space-x-4 hidden md:flex">
+        <a href="{% url 'home' %}" class="hover:text-blue-400">Home</a>
+        <a href="{% url 'about' %}" class="hover:text-blue-400">About</a>
+        <a href="{% url 'exchange' %}" class="hover:text-blue-400">Exchange</a>
+        <a href="{% url 'contact' %}" class="text-blue-400 font-semibold">Contact</a>
+      </div>
+      <div class="space-x-2">
+        <a href="{% url 'login' %}" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Login</a>
+        <a href="{% url 'register' %}" class="bg-transparent border border-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="max-w-4xl mx-auto px-6 py-32 mt-12">
+    <h1 class="text-4xl font-bold text-center mb-6 text-blue-600">Contact Us</h1>
+    <p class="text-center text-gray-600 mb-10">Have a question, suggestion, or want to report an issue? We'd love to hear from you.</p>
+
+    <div class="bg-white shadow-md rounded p-8">
+      <h2 class="text-2xl font-semibold mb-4 text-blue-600">Contact Information</h2>
+      <p class="mb-2"><strong>Email:</strong> support@academyexchange.com</p>
+      <p class="mb-6"><strong>Phone:</strong> +880 123 456 789</p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-blue-600">Send Feedback</h2>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="mb-4 p-3 bg-green-100 border border-green-300 text-green-800 rounded">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post" class="space-y-4">
+        {% load widget_tweaks %}
+
+        {% csrf_token %}
+        <div>
+          <label for="name" class="block font-medium">Your Name</label>
+          {{ form.name|add_class:"w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-400" }}
+        </div>
+        <div>
+          <label for="email" class="block font-medium">Your Email</label>
+          {{ form.email|add_class:"w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-400" }}
+        </div>
+        <div>
+          <label for="subject" class="block font-medium">Subject</label>
+          {{ form.subject|add_class:"w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-400" }}
+        </div>
+        <div>
+          <label for="message" class="block font-medium">Message</label>
+          {{ form.message|add_class:"w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-400" }}
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 mt-16">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="font-bold text-lg mb-2 text-blue-400">Academy Exchange</h3>
+        <p>A platform for students to buy, sell, and exchange books & study materials.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2 text-blue-400">Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}" class="hover:text-blue-500">Home</a></li>
+          <li><a href="{% url 'exchange' %}" class="hover:text-blue-500">Exchange</a></li>
+          <li><a href="{% url 'about' %}" class="hover:text-blue-500">About</a></li>
+          <li><a href="{% url 'contact' %}" class="hover:text-blue-500">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2 text-blue-400">Contact Us</h4>
+        <p>Email: support@academyexchange.com</p>
+        <p>Phone: +880 123 456 789</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2 text-blue-400">Follow Us</h4>
+        <div class="flex space-x-2">
+          <a href="#"><img src="{% static 'images/facebook.png' %}" alt="Facebook" class="w-6 h-6"></a>
+          <a href="#"><img src="{% static 'images/twitter.png' %}" alt="Twitter" class="w-6 h-6"></a>
+          <a href="#"><img src="{% static 'images/instagram.png' %}" alt="Instagram" class="w-6 h-6"></a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-800 text-center py-4 text-sm">&copy; 2025 Academy Exchange | All Rights Reserved</div>
+  </footer>
+</body>
+</html>

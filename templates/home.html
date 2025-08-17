@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academy Exchange - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animated gradient background */
+    body {
+      background: linear-gradient(270deg, #1e3a8a, #2563eb, #3b82f6, #1e40af);
+      background-size: 800% 800%;
+      animation: gradientMove 20s ease infinite;
+    }
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Flip card effect */
+    .card {
+      perspective: 1000px;
+    }
+    .card-inner {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1rem;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+      background: #1e3a8a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body class="text-white">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full bg-black/40 backdrop-blur text-white z-50 transition-all" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="text-2xl font-bold tracking-wide">📚 Academy Exchange</div>
+      <div class="space-x-6 hidden md:flex">
+        <a href="{% url 'home' %}" class="hover:text-blue-300 transition">Home</a>
+        <a href="{% url 'about' %}" class="hover:text-blue-300 transition">About</a>
+        <a href="{% url 'exchange' %}" class="hover:text-blue-300 transition">Exchange</a>
+        <a href="{% url 'contact' %}" class="hover:text-blue-300 transition">Contact</a>
+      </div>
+      <div class="space-x-3">
+        <a href="{% url 'login' %}" class="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600 transition">Login</a>
+        <a href="{% url 'register' %}" class="border border-blue-400 px-4 py-1 rounded-lg hover:bg-blue-400 hover:text-black transition">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Slider -->
+  <section class="relative h-[85vh] flex items-center justify-center overflow-hidden mt-16">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out hero-slide active opacity-100"
+        style="background-image: url('{% static 'images/slide1.jpg' %}'); background-size: cover; background-position: center;"></div>
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out hero-slide opacity-0"
+        style="background-image: url('{% static 'images/slide2.jpg' %}'); background-size: cover; background-position: center;"></div>
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out hero-slide opacity-0"
+        style="background-image: url('{% static 'images/slide3.jpg' %}'); background-size: cover; background-position: center;"></div>
+    </div>
+    <div class="relative text-center text-white px-6 z-10">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg">Welcome to Academy Exchange</h1>
+      <p class="text-xl md:text-2xl mb-8">Buy, sell & exchange books and materials with fellow students.</p>
+      <a href="{% url 'exchange' %}" class="bg-blue-500 px-8 py-3 rounded-xl text-lg font-semibold hover:bg-blue-600 shadow-lg transition">🚀 Get Started</a>
+    </div>
+  </section>
+
+    <!-- Folding Card Section -->
+  <section class="max-w-7xl mx-auto py-20 px-6">
+    <h2 class="text-4xl font-bold text-center mb-14">Why Choose Us?</h2>
+    <div class="grid md:grid-cols-3 gap-12">
+      
+      <!-- Card 1 -->
+      <div class="card w-full h-72 relative">
+        <div class="card-inner w-full h-full relative">
+          <div class="card-front bg-white/90 p-6 text-center text-black rounded-xl shadow-lg flex flex-col justify-center">
+            <!-- Book Icon -->
+            <div class="mx-auto mb-4 w-24 h-24 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20l9-5-9-5-9 5 9 5zm0 0v-6m0 6l9-5m-9 5l-9-5" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Easy Exchange</h3>
+            <p>Swap your old books with others in just a few clicks.</p>
+          </div>
+          <div class="card-back">
+            <p class="text-lg font-medium">Quick, simple, and student-friendly book exchanges at your fingertips.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card w-full h-72 relative">
+        <div class="card-inner w-full h-full relative">
+          <div class="card-front bg-white/90 p-6 text-center text-black rounded-xl shadow-lg flex flex-col justify-center">
+            <!-- Wallet/Deals Icon -->
+            <div class="mx-auto mb-4 w-24 h-24 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a5 5 0 00-10 0v2M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Affordable Deals</h3>
+            <p>Buy and sell at student-friendly prices.</p>
+          </div>
+          <div class="card-back">
+            <p class="text-lg font-medium">Save money while gaining access to the resources you need.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card w-full h-72 relative">
+        <div class="card-inner w-full h-full relative">
+          <div class="card-front bg-white/90 p-6 text-center text-black rounded-xl shadow-lg flex flex-col justify-center">
+            <!-- Users/Community Icon -->
+            <div class="mx-auto mb-4 w-24 h-24 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Student Community</h3>
+            <p>Connect with learners from your university and beyond.</p>
+          </div>
+          <div class="card-back">
+            <p class="text-lg font-medium">Grow your academic network while sharing resources.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="bg-black/80 text-gray-300 mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="font-bold text-lg mb-3 text-blue-400">Academy Exchange</h3>
+        <p>A platform for students to buy, sell, and exchange books & study materials.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3 text-blue-300">Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}" class="hover:text-blue-400">Home</a></li>
+          <li><a href="{% url 'exchange' %}" class="hover:text-blue-400">Exchange</a></li>
+          <li><a href="{% url 'about' %}" class="hover:text-blue-400">About</a></li>
+          <li><a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3 text-blue-300">Contact Us</h4>
+        <p>Email: support@academyexchange.com</p>
+        <p>Phone: +880 123 456 789</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3 text-blue-300">Follow Us</h4>
+        <div class="flex space-x-3">
+          <a href="#"><img src="{% static 'images/facebook.png' %}" class="w-7 h-7 hover:scale-110 transition"></a>
+          <a href="#"><img src="{% static 'images/twitter.png' %}" class="w-7 h-7 hover:scale-110 transition"></a>
+          <a href="#"><img src="{% static 'images/instagram.png' %}" class="w-7 h-7 hover:scale-110 transition"></a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-900 text-center py-4 text-sm">&copy; 2025 Academy Exchange | All Rights Reserved</div>
+  </footer>
+
+  <!-- JS for navbar + slider -->
+  <script>
+    // Navbar scroll effect
+    window.addEventListener("scroll", () => {
+      const navbar = document.getElementById("navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("bg-black/90", "shadow-lg");
+      } else {
+        navbar.classList.remove("bg-black/90", "shadow-lg");
+      }
+    });
+
+    // Hero slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".hero-slide");
+    setInterval(() => {
+      slides[currentSlide].classList.remove("opacity-100");
+      slides[currentSlide].classList.add("opacity-0");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.remove("opacity-0");
+      slides[currentSlide].classList.add("opacity-100");
+    }, 5000);
+  </script>
+
+</body>
+</html>

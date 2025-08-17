@@ -1,5 +1,4 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'style.css' %}">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,37 +6,146 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | Academy Exchange</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body class="login-body">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <div class="login-container">
-    <div class="login-card animate-up">
-      <div class="login-header">
-        <h2>Welcome Back 📚</h2>
-        <p>Log in to start sharing and exploring books</p>
+  <style>
+    /* Background gradient animation */
+    body {
+      background: linear-gradient(120deg, #dbeafe, #e0e7ff, #c7d2fe);
+      background-size: 400% 400%;
+      animation: bgShift 20s ease infinite;
+      font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating orbit icons */
+    .orbit-container {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .orbit-icon {
+      position: absolute;
+      font-size: 1.5rem;
+      color: rgba(79, 70, 229, 0.4); /* indigo-700 with opacity */
+      animation: spin 20s linear infinite, floatY 6s ease-in-out infinite;
+    }
+
+    .orbit-icon:nth-child(1) {
+      top: 10%; left: 15%;
+      font-size: 2rem;
+      animation-delay: 0s;
+    }
+    .orbit-icon:nth-child(2) {
+      top: 20%; right: 10%;
+      font-size: 2.5rem;
+      animation-delay: 3s;
+    }
+    .orbit-icon:nth-child(3) {
+      bottom: 15%; left: 20%;
+      font-size: 2rem;
+      animation-delay: 1.5s;
+    }
+    .orbit-icon:nth-child(4) {
+      bottom: 10%; right: 15%;
+      font-size: 1.8rem;
+      animation-delay: 4.5s;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 0.8s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Orbiting Icons -->
+  <div class="orbit-container">
+    <i class="fas fa-book orbit-icon"></i>
+    <i class="fas fa-scroll orbit-icon"></i>
+    <i class="fas fa-laptop orbit-icon"></i>
+    <i class="fas fa-pen-nib orbit-icon"></i>
+  </div>
+
+  <!-- 🌐 Navigation Bar -->
+  <nav class="bg-white/70 backdrop-blur-sm shadow-md p-4 fixed w-full top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="font-bold text-xl text-blue-700">Academy Exchange</a>
+      <div class="flex items-center gap-6 text-blue-800 font-medium">
+        <a href="/" class="hover:text-indigo-600 transition">Home</a>
+        <a href="/exchange/" class="hover:text-indigo-600 transition">Exchange</a>
+        <a href="/about/" class="hover:text-indigo-600 transition">About</a>
+        <a href="/contact/" class="hover:text-indigo-600 transition">Contact</a>
+        {% if user.is_authenticated %}
+        <div class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-semibold shadow">
+          {{ user.username|slice:":1"|upper }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Spacer for fixed nav -->
+  <div class="h-20"></div>
+
+  <!-- ✨ Login Container -->
+  <div class="flex-grow flex items-center justify-center">
+    <div class="w-full max-w-md bg-white/60 backdrop-blur-lg p-8 rounded-xl shadow-2xl border border-white/30 animate-fade-in">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold text-indigo-700">Welcome Back 📚</h2>
+        <p class="text-gray-600 mt-1">Log in to start sharing and exploring books</p>
       </div>
 
-      <form method="post" class="login-form">
+      <form method="post" class="space-y-6">
         {% csrf_token %}
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" required />
+
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <input type="text" name="username" id="username" required
+                 class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none transition shadow-sm bg-white/80 backdrop-blur-md">
         </div>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" required />
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" name="password" id="password" required
+                 class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none transition shadow-sm bg-white/80 backdrop-blur-md">
         </div>
 
-        <button type="submit" class="btn login-submit-btn">Login</button>
-
-        <div class="login-footer">
-          <p>Don't have an account? <a href="/register">Register here</a></p>
-         
-
-        </div>
+        <button type="submit"
+                class="w-full py-2 px-4 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-semibold rounded-md shadow-lg hover:from-indigo-600 hover:to-blue-600 transition-all transform hover:-translate-y-0.5">
+          Log In
+        </button>
       </form>
+
+      <div class="mt-6 text-center text-sm text-gray-600">
+        Don't have an account?
+        <a href="/register" class="text-indigo-600 font-semibold hover:underline">Register here</a>
+      </div>
     </div>
   </div>
 

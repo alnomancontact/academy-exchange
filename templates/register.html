@@ -1,5 +1,4 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'register_style.css' %}">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,110 +6,203 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Register | Academy Exchange</title>
-    <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font - Inter for a clean, modern look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Link to your custom CSS file -->
-    <link rel="stylesheet" href="{% static 'css/register_style.css' %}">
-</head>
-<body class="academy-register-body">
+    <style>
+        body {
+            background: linear-gradient(270deg, #dbeafe, #c7d2fe, #e0e7ff);
+            background-size: 600% 600%;
+            animation: gradient 20s ease infinite;
+            font-family: 'Inter', sans-serif;
+        }
 
-    <div class="academy-register-container">
-        <div class="academy-register-card">
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating book-like shapes container */
+        .floating-elements {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* The floating “books” */
+        .floaty {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.5); /* Tailwind blue-500 with opacity */
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+            animation: floatY 10s linear infinite, floatX 8s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        /* Different horizontal start positions and animation delays */
+        .floaty:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floaty:nth-child(2) { left: 25%; animation-delay: 2s; }
+        .floaty:nth-child(3) { left: 40%; animation-delay: 4s; }
+        .floaty:nth-child(4) { left: 60%; animation-delay: 1s; }
+        .floaty:nth-child(5) { left: 75%; animation-delay: 3s; }
+        .floaty:nth-child(6) { left: 90%; animation-delay: 5s; }
+
+        /* Floating animations */
+        @keyframes floatY {
+            0% { top: 100vh; }
+            100% { top: -50px; }
+        }
+
+        @keyframes floatX {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col">
+
+    <!-- Floating background shapes -->
+    <div class="floating-elements">
+        <div class="floaty"></div>
+        <div class="floaty"></div>
+        <div class="floaty"></div>
+        <div class="floaty"></div>
+        <div class="floaty"></div>
+        <div class="floaty"></div>
+    </div>
+
+    <!-- 🌐 Navbar -->
+    <nav class="bg-white/60 backdrop-blur-md shadow-md p-4 fixed w-full top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-xl font-bold text-blue-700">Academy Exchange</a>
+            <div class="space-x-6 text-blue-800 font-medium">
+                <a href="/" class="hover:text-indigo-600 transition">Home</a>
+                <a href="/exchange/" class="hover:text-indigo-600 transition">Exchange</a>
+                <a href="/about/" class="hover:text-indigo-600 transition">About</a>
+                <a href="/contact/" class="hover:text-indigo-600 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Spacer for nav -->
+    <div class="h-20"></div>
+
+    <!-- Registration Form Container -->
+    <div class="flex-grow flex items-center justify-center px-4">
+        <div class="w-full max-w-xl bg-white/70 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white/30 fade-in">
             
-            <div class="academy-register-header">
-                <h2 class="academy-register-title">
-                    Unlock Your Academic Potential <span class="academy-register-icon">✨</span>
-                </h2>
-                <p class="academy-register-subtitle">
-                    Join Academy Exchange to effortlessly <strong class="text-[#003366]">post, browse, and connect</strong> for your books and notes.
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-indigo-700">Unlock Your Academic Potential ✨</h2>
+                <p class="text-gray-700 mt-2">
+                    Join <strong class="text-blue-600">Academy Exchange</strong> and start 
+                    <span class="font-medium">posting, browsing, and connecting</span> with fellow students!
                 </p>
+                <p class="text-sm text-gray-600 mt-1">It's free, fast, and opens up a world of study materials.</p>
             </div>
 
-            <form method="post" class="academy-register-form">
+            <!-- Django messages -->
+            {% if messages %}
+                <ul class="mb-4">
+                    {% for message in messages %}
+                        <li class="text-green-600">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <!-- Form -->
+            <form method="post" class="space-y-5">
                 {% csrf_token %}
-                
-                <!-- Username Field -->
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        id="username" 
-                        required 
-                        placeholder="Choose a unique username"
-                    />
+
+                <!-- Username -->
+                <div>
+                    <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="id_username" name="{{ form.username.name }}"
+                           value="{{ form.username.value|default_if_none:'' }}"
+                           class="w-full p-3 border border-gray-300 rounded-md bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    {% if form.username.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.username.errors }}</p>
+                    {% endif %}
                 </div>
 
-                <!-- Email Field -->
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        id="email" 
-                        required 
-                        placeholder="Enter your email"
-                    />
+                <!-- Email -->
+                <div>
+                    <label for="id_email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="id_email" name="{{ form.email.name }}"
+                           value="{{ form.email.value|default_if_none:'' }}"
+                           class="w-full p-3 border border-gray-300 rounded-md bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    {% if form.email.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.email.errors }}</p>
+                    {% endif %}
                 </div>
 
-                <!-- Phone Number Field -->
-                <div class="form-group">
-                    <label for="phone_number">Phone Number</label>
-                    <input 
-                        type="tel" 
-                        name="phone_number" 
-                        id="phone_number" 
-                        placeholder="e.g., +88017XXXXXXXX"
-                    />
+                <!-- Phone Number -->
+                <div>
+                    <label for="id_phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input type="text" id="id_phone_number" name="{{ form.phone_number.name }}"
+                           value="{{ form.phone_number.value|default_if_none:'' }}"
+                           class="w-full p-3 border border-gray-300 rounded-md bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    {% if form.phone_number.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.phone_number.errors }}</p>
+                    {% endif %}
                 </div>
 
-                <!-- University ID Field -->
-                <div class="form-group">
-                    <label for="university_id">University ID</label>
-                    <input 
-                        type="text" 
-                        name="university_id" 
-                        id="university_id" 
-                        placeholder="e.g., 181xxxxxxx"
-                    />
+                <!-- University ID -->
+                <div>
+                    <label for="id_university_id" class="block text-sm font-medium text-gray-700">University ID</label>
+                    <input type="text" id="id_university_id" name="{{ form.university_id.name }}"
+                           value="{{ form.university_id.value|default_if_none:'' }}"
+                           class="w-full p-3 border border-gray-300 rounded-md bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    {% if form.university_id.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.university_id.errors }}</p>
+                    {% endif %}
                 </div>
 
-                <!-- Password Field -->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        id="password" 
-                        required 
-                        placeholder="Create a strong password"
-                    />
+                <!-- Password -->
+                <div>
+                    <label for="id_password1" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="id_password1" name="{{ form.password1.name }}"
+                           class="w-full p-3 border border-gray-300 rounded-md bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    {% if form.password1.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.password1.errors }}</p>
+                    {% endif %}
                 </div>
 
-                <!-- Confirm Password Field -->
-                <div class="form-group">
-                    <label for="confirm_password">Confirm Password</label>
-                    <input 
-                        type="password" 
-                        name="confirm_password" 
-                        id="confirm_password" 
-                        required 
-                        placeholder="Re-enter your password"
-                    />
+                <!-- Confirm Password -->
+                <div>
+                    <label for="id_password2" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input type="password" id="id_password2" name="{{ form.password2.name }}"
+                           class="w-full p-3 border border-gray-300 rounded-md bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    {% if form.password2.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.password2.errors }}</p>
+                    {% endif %}
                 </div>
 
-                <button type="submit" class="academy-submit-btn">
+                <!-- Submit Button -->
+                <button type="submit"
+                        class="w-full py-3 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-semibold rounded-md shadow-lg hover:from-indigo-600 hover:to-blue-600 transition-all transform hover:-translate-y-0.5">
                     Register & Start Exchanging
                 </button>
             </form>
 
-            <div class="academy-register-footer">
-                <p>Already have an account? 
-                    <a href="/login">Log in here</a>
-                </p>
-            </div>
+            <!-- Login Link -->
+            <p class="text-center mt-6 text-gray-700 text-sm">
+                Already have an account?
+                <a href="{% url 'login' %}" class="text-indigo-600 font-semibold hover:underline">Log in here</a>
+            </p>
         </div>
     </div>
 

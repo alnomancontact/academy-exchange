@@ -18,15 +18,24 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from accounts.views import login_view, register_view , profile_view , history_view # <-- Corrected: import register_view as well
+from accounts.views import login_view, register_view , profile_view , history_view,  home_view, exchange_view, buy_item, about_view, contact_view
+from django.contrib.auth.views import LogoutView # <-- Corrected: import register_view as well
 
 urlpatterns = [
+    path('exchange/', exchange_view, name='exchange'),
     path('admin/', admin.site.urls),
-    path('', login_view, name='home'), # Changed name to 'home' if this is your root/landing page
-    path('login/', login_view, name='login'), # Added a dedicated /login/ path
+    path('', home_view, name='home'),   
+    path('accounts/login/', login_view, name='account_login'),        # Root URL now points to home page
+    path('login/', login_view, name='login'),
     path('register/', register_view, name='register'),
-  path('profile/', profile_view, name='profile'),
-  path('history/', history_view, name='history'),
+    path('profile/', profile_view, name='profile'),
+    path('history/', history_view, name='history'),
+     path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
+     path('buy/<int:item_id>/', buy_item, name='buy_item'),
+    
+    path('about/', about_view, name='about'),
+    
+    path('contact/', contact_view, name='contact'),
 
 ]
 
