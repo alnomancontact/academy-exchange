@@ -10,7 +10,19 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv(
+            "DATABASE_URL",
+            "postgresql://exchange_dq01_user:YWbFCEe6L0FZIXpDqV7WTvgLq4c89GTa@dpg-d2hlgqbuibrs73cbnq2g-a/exchange_dq01"
+        ),
+        conn_max_age=600
+    )
+}
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,12 +90,7 @@ WSGI_APPLICATION = 'exchange.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join('/mnt/data', 'db.sqlite3'),
-    }
-}
+
 
 
 # Password validation
@@ -121,7 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
