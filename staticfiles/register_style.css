@@ -1,0 +1,338 @@
+/* Import Google Font - Inter for a modern and clean look */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- Base Styles & Background --- */
+.academy-register-body {
+    background: linear-gradient(135deg, #001f3f 0%, #003366 100%); /* Deep blue gradient inspired by home page */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Changed to min-height to allow scrolling if content overflows */
+    font-family: 'Inter', sans-serif; /* Consistent font */
+    color: #f0f8ff; /* Light text for overall page */
+    overflow-y: auto; /* Allow vertical scrolling if content is too tall */
+    position: relative;
+    padding: 20px 0; /* Add vertical padding to prevent content from touching edges on small screens */
+}
+
+/* --- Subtle Background Overlay for Texture and Depth --- */
+.academy-register-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 50, 100, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(0, 50, 100, 0.15) 0%, transparent 50%);
+    background-size: 100% 100%;
+    z-index: 0;
+    animation: backgroundPulse 18s infinite alternate ease-in-out; /* Slow, gentle background movement */
+}
+
+/* --- Main Container for Centering --- */
+.academy-register-container {
+    position: relative;
+    z-index: 10; /* Ensures the card is above the background effects */
+    width: 90%;
+    max-width: 850px; /* Further increased max-width for the white box (card) */
+    padding: 1.5rem; /* Padding around the card */
+}
+
+/* --- Registration Card --- */
+.academy-register-card {
+    background: rgba(255, 255, 255, 0.98); /* Slightly transparent white for depth */
+    border-radius: 20px; /* More pronounced rounded corners */
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.15), /* Primary soft shadow */
+        0 0 0 1px rgba(0, 0, 0, 0.03); /* Very subtle inner border for crispness */
+    padding: 3rem 3.5rem; /* Generous internal padding */
+    color: #003366; /* Deep blue for primary text */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Smooth entrance animation */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(8px); /* For Safari support */
+    position: relative;
+    overflow: hidden; /* Ensures internal elements are clipped */
+    text-align: left; /* Set default text alignment for content inside the card */
+}
+
+/* --- Card's Inner Glow/Texture (Creative Element) --- */
+.academy-register-card::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 204, 0, 0.08) 0%, transparent 70%); /* Subtle yellow glow */
+    border-radius: 50%;
+    opacity: 0.7;
+    transform: rotate(45deg);
+    pointer-events: none;
+    animation: glowRotate 8s infinite alternate ease-in-out; /* Slow rotation and glow */
+}
+
+/* --- Header Section --- */
+.academy-register-header {
+    text-align: left; /* Align header content to the left */
+    margin-bottom: 2.5rem;
+    position: relative; /* Ensure header content is above card ::before */
+    z-index: 1;
+}
+
+.academy-register-title {
+    font-size: 2.5rem; /* Larger, more impactful title */
+    font-weight: 700;
+    color: #002244; /* Even deeper blue for the main heading */
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.04em; /* Tighter letter spacing for impact */
+    line-height: 1.2;
+    display: flex; /* For aligning icon */
+    align-items: center;
+    justify-content: flex-start; /* Align title and icon to the start (left) */
+}
+
+.academy-register-icon {
+    font-size: 2.8rem; /* Larger icon */
+    margin-left: 10px;
+    color: #ffcc00; /* Yellow accent for the icon */
+    display: inline-block;
+    animation: bounceIn 1s ease-out 0.5s both; /* Icon animation */
+}
+
+.academy-register-subtitle {
+    font-size: 1.05rem; /* Slightly larger, more inviting subtitle */
+    color: #666;
+    line-height: 1.6;
+    max-width: 100%; /* Allow subtitle to take full width */
+    margin: 0.75rem auto 0; /* No auto margin to prevent centering */
+    text-align: left; /* Ensure subtitle is left-aligned */
+}
+
+/* --- Form Styles --- */
+.academy-register-form {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two columns, responsive */
+    gap: 1.5rem 2rem; /* Gap between rows and columns */
+    margin-bottom: 1.8rem;
+}
+
+.academy-register-form .form-group {
+    /* No margin-bottom here as gap handles spacing */
+    position: relative;
+    text-align: left;
+}
+
+.academy-register-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.7rem; /* More space between label and input */
+    color: #003366;
+    font-size: 0.95rem;
+}
+
+.academy-register-form input {
+    width: 100%;
+    padding: 0.95rem 1.1rem; /* Generous padding for inputs */
+    border-radius: 10px; /* Slightly more rounded inputs */
+    border: 1px solid #dcdcdc; /* Lighter, subtle border */
+    font-size: 1.05rem;
+    color: #333;
+    background-color: #fcfcfc; /* Very light background for inputs */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.academy-register-form input:focus {
+    outline: none;
+    border-color: #ffcc00; /* Accent color on focus */
+    box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.3); /* Stronger glow on focus */
+    background-color: #ffffff; /* Solid white on focus */
+}
+
+/* Full width for the button (after the grid) */
+.academy-register-form .full-width-button-container {
+    grid-column: 1 / -1; /* Make the button span all columns */
+    margin-top: 1rem; /* Add some space above the button */
+    /* text-align: center; -- REMOVED */
+}
+
+/* --- Submit Button --- */
+.academy-submit-btn {
+    /* Removed width: 100%; to allow margin: auto to center it properly */
+    max-width: 400px; /* Optional: Give the button a max-width if it's too wide on very large screens */
+    display: block; /* Ensures it's a block-level element */
+    margin: 0 auto; /* Centers the block-level element horizontally */
+    background: linear-gradient(45deg, #ffdc00, #ffb300); /* Gradient for the button */
+    color: #1a1a1a; /* Dark text for contrast */
+    padding: 1.1rem; /* Prominent button padding */
+    border: none;
+    border-radius: 10px; /* Matches input rounding */
+    font-weight: 700;
+    font-size: 1.2rem; /* Larger font size */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 15px rgba(255, 204, 0, 0.3); /* Button shadow */
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.02em; /* Slight letter spacing for button text */
+}
+
+.academy-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2); /* Light ripple effect on hover */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    z-index: 0;
+}
+
+.academy-submit-btn:hover {
+    background: linear-gradient(45deg, #ffb300, #ffdc00); /* Inverted gradient on hover */
+    transform: translateY(-3px); /* More pronounced lift effect */
+    box-shadow: 0 10px 20px rgba(255, 204, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.academy-submit-btn:hover::before {
+    width: 200%;
+    height: 200%;
+    opacity: 1;
+}
+
+.academy-submit-btn:active {
+    transform: translateY(0); /* Press down effect */
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+    transition-duration: 0.1s; /* Faster active feedback */
+}
+
+/* --- Footer Link --- */
+.academy-register-footer {
+    text-align: center; /* Keep footer centered */
+    margin-top: 2.5rem; /* More space above footer */
+    font-size: 0.95rem;
+    color: #888; /* Softer color for footer text */
+    position: relative;
+    z-index: 1;
+}
+
+.academy-register-footer a {
+    color: #003366; /* Your original link color */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.academy-register-footer a:hover {
+    color: #0055aa; /* Brighter blue on hover */
+    text-decoration: underline;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px); /* Starts even lower for more impact */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backgroundPulse {
+    0% { background-size: 100% 100%; }
+    50% { background-size: 105% 105%; } /* Subtle zoom for depth */
+    100% { background-size: 100% 100%; }
+}
+
+@keyframes glowRotate {
+    0% { transform: rotate(0deg) scale(1); opacity: 0.7; }
+    50% { transform: rotate(10deg) scale(1.05); opacity: 0.8; }
+    100% { transform: rotate(0deg) scale(1); opacity: 0.7; }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) { /* Adjust breakpoint for wider card */
+    .academy-register-container {
+        max-width: 95%; 
+        padding: 1rem;
+    }
+    .academy-register-card {
+        padding: 2.5rem 2rem; 
+        border-radius: 15px;
+    }
+    .academy-register-form {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .academy-register-title {
+        font-size: 2rem;
+    }
+    .academy-register-icon {
+        font-size: 2.2rem;
+    }
+    .academy-register-subtitle {
+        font-size: 0.95rem;
+    }
+    .academy-register-form input,
+    .academy-submit-btn {
+        font-size: 1rem;
+        padding: 0.85rem 1rem;
+    }
+    .academy-register-footer {
+        font-size: 0.85rem;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .academy-register-card {
+        padding: 2rem 1.5rem; 
+        border-radius: 12px;
+    }
+    .academy-register-title {
+        font-size: 1.8rem;
+    }
+    .academy-register-icon {
+        font-size: 2rem;
+    }
+    .academy-register-subtitle {
+        font-size: 0.9rem;
+    }
+}

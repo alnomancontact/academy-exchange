@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- Base Styles & Background (Keeping original color, but enhancing depth) --- */
+.login-body {
+    background: #001f3f; /* Your original deep blue */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif; /* A clean, modern, and versatile font */
+    color: #f0f8ff; /* Light, subtle text color for overall page */
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- Subtle Background Grid/Texture (Adds a touch of detail) --- */
+.login-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 50, 100, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(0, 50, 100, 0.1) 0%, transparent 50%);
+    background-size: 100% 100%;
+    z-index: 0;
+    animation: backgroundPulse 15s infinite alternate; /* Very subtle background movement */
+}
+
+/* --- Login Container --- */
+.login-container {
+    max-width: 420px; /* Slightly wider for a more spacious feel */
+    width: 90%;
+    position: relative;
+    z-index: 1; /* Ensures card is above background details */
+}
+
+/* --- Login Card (Focus on refined shadows and clean design) --- */
+.login-card {
+    background-color: #ffffff; /* Keeping your original white card background */
+    border-radius: 12px; /* Consistent with your original but still modern */
+    /* Enhanced, multi-layered shadow for depth and premium feel */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.15);
+    padding: 2.8rem 3rem; /* Generous padding for an exclusive feel */
+    color: #003366; /* Your original primary text color */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Smoother entrance animation */
+    position: relative;
+    overflow: hidden; /* Ensure elements don't spill outside */
+}
+
+/* --- Login Header --- */
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h2 {
+    font-size: 2.1rem; /* Slightly larger, more commanding heading */
+    margin-bottom: 0.75rem;
+    color: #002244; /* A slightly darker blue for main heading impact */
+    font-weight: 700; /* Bolder font weight */
+    letter-spacing: -0.02em; /* Subtle tighter letter spacing */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-header h2 span.icon-book { /* Using a span for potential icon enhancement */
+    margin-right: 8px;
+    font-size: 2.0rem;
+    color: #ffcc00; /* Your accent yellow for the icon */
+    line-height: 1; /* Align icon better */
+}
+
+.login-header p {
+    font-size: 0.98rem; /* Slightly larger, more readable description */
+    color: #555; /* Your original description text color */
+    line-height: 1.5;
+    max-width: 85%;
+    margin: 0.5rem auto 0; /* Center and add top margin */
+}
+
+/* --- Form Elements --- */
+.login-form .form-group {
+    margin-bottom: 1.6rem; /* Increased spacing between form groups */
+}
+
+.login-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.6rem; /* More space between label and input */
+    color: #003366;
+    font-size: 0.95rem;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.85rem 1rem; /* More generous padding */
+    border-radius: 8px; /* Slightly more rounded input fields */
+    border: 1px solid #e0e0e0; /* Lighter, subtle border */
+    font-size: 1rem;
+    color: #333;
+    background-color: #fcfcfc; /* Very light background for inputs */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #ffcc00; /* Accent color on focus */
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.25); /* Subtle glow on focus */
+    background-color: #ffffff; /* Solid white on focus */
+}
+
+/* --- Submit Button --- */
+.login-submit-btn {
+    width: 100%;
+    background-color: #ffcc00; /* Your original button color */
+    color: #000; /* Black text for strong contrast */
+    padding: 0.9rem; /* More prominent button padding */
+    border: none;
+    border-radius: 8px; /* Matches input field rounding */
+    font-weight: 700; /* Bolder text */
+    font-size: 1.1rem; /* Larger font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2); /* Subtle shadow for the button */
+    position: relative;
+    overflow: hidden;
+}
+
+.login-submit-btn:hover {
+    background-color: #e6b800; /* Your original hover color */
+    transform: translateY(-2px); /* Subtle lift effect */
+    box-shadow: 0 6px 15px rgba(255, 204, 0, 0.35); /* Enhanced shadow on hover */
+}
+
+.login-submit-btn:active {
+    transform: translateY(0); /* Press down effect */
+    box-shadow: 0 2px 5px rgba(255, 204, 0, 0.2);
+}
+
+/* --- Footer --- */
+.login-footer {
+    text-align: center;
+    margin-top: 2rem; /* More space above footer */
+    font-size: 0.9rem;
+    color: #777; /* Softer color for footer text */
+}
+
+.login-footer p {
+    margin-bottom: 0.6rem; /* Space if there are multiple lines */
+}
+
+.login-footer a {
+    color: #003366; /* Your original link color */
+    text-decoration: none; /* No underline by default */
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.login-footer a:hover {
+    color: #0055aa; /* Slightly brighter blue on hover for better interaction */
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* --- Forgot Password link --- */
+.forgot-password {
+    display: block; /* Ensures it takes its own line */
+    margin-top: 1rem; /* Distinct spacing */
+    color: #777;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #003366; /* Match main text color on hover */
+    text-decoration: underline;
+}
+
+
+/* --- Keyframe Animations --- */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Starts lower */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backgroundPulse {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+    .login-card {
+        padding: 2rem 1.8rem; /* Adjust padding for smaller screens */
+        margin: 0 1rem; /* Add horizontal margin on smaller screens */
+    }
+    .login-header h2 {
+        font-size: 1.7rem;
+    }
+    .login-header p {
+        font-size: 0.9rem;
+    }
+    .login-form label, .login-form input, .login-submit-btn {
+        font-size: 0.95rem;
+    }
+    .login-footer {
+        font-size: 0.85rem;
+    }
+}

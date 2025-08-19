@@ -13,19 +13,22 @@ import os
 import dj_database_url
 from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv(
             "DATABASE_URL",
-            "postgresql://exchange_dq01_user:YWbFCEe6L0FZIXpDqV7WTvgLq4c89GTa@dpg-d2hlgqbuibrs73cbnq2g-a/exchange_dq01"
+            "postgresql://exchange_dq01_user:YWbFCEe6L0FZIXpDqV7WTvgLq4c89GTa@dpg-d2hlgqbuibrs73cbnq2g-a.singapore-postgres.render.com/exchange_dq01"
         ),
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
